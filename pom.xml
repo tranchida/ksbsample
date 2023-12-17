@@ -109,7 +109,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
-          <release>17</release>
+          <release>21</release>
         </configuration>
       </plugin>
       <plugin>
@@ -138,10 +138,10 @@
         <version>3.4.0</version>
         <configuration>
           <from>
-            <image>eclipse-temurin:17.0.9_9-jre-alpine@sha256:635ec1b177ac2a587324ed5eda2b9dec197876e16d10c35a4ef9595d76c2c891</image>
+            <image>eclipse-temurin:21.0.1_12-jre-alpine@sha256:98963ed09c4fd82e128c6cc9e64d71798239b824164276626d79b8f9e666ac0e</image>
           </from>
           <to>
-            <image>myimage</image>
+            <image>tranchida/ksbsample:1.0.0</image>
           </to>
           <container>
             <ports>
