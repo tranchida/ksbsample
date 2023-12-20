@@ -30,7 +30,13 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: config-volume
-          mountPath: /conf
+          mountPath: /conf/environment.properties
+          subPath: environment.properties
+        - name: secret-volume
+          mountPath: /conf/credentials.properties
+          subPath: credentials.properties
+        - name: data-volume
+          mountPath: /data
         resources:
           requests:
             cpu: 100m
@@ -44,4 +50,9 @@ spec:
           # Provide the name of the ConfigMap containing the files you want
           # to add to the container
           name: ksbsample-environment
-
+      - name: secret-volume
+        secret:
+          secretName: ksbsample-credentials
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: ksbsample-pvc

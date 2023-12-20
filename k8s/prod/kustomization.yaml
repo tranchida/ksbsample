@@ -1,8 +1,16 @@
 resources:
 - ../base
+- ingress.yaml
+
+namePrefix: prod-
 
 configMapGenerator:
 - name: ksbsample-environment
   files:
   - environment.properties
   - sample.properties
+
+secretGenerator:
+- name: ksbsample-credentials
+  files:
+  - credentials.properties
