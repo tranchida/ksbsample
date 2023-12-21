@@ -4,7 +4,7 @@ metadata:
   name: ksbsample-ingress
 spec:
   rules:
-  - host: test-a.bar.com
+  - host: tranchida-a.dynv6.net
     http:
       paths:
       - path: /
