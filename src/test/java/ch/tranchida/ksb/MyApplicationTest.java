@@ -3,20 +3,21 @@ package ch.tranchida.ksb;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.main.junit5.CamelMainTestSupport;
+import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * A simple unit test showing how to test the application {@link MyApplication}.
  */
-class MyApplicationTest extends CamelMainTestSupport {
+class MyApplicationTest extends CamelSpringTestSupport {
 
     @Override
-    protected Class<?> getMainClass() {
-        // The main class of the application to test
-        return MyApplication.class;
+    protected AbstractApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel.xml");
     }
 
     @Test

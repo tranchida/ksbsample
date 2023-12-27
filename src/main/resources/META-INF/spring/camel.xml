@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    
+        <route id="sample">
+            <from uri="timer:foo?period={{myPeriod}}"/>
+            <log message="{{message}}" />
+            <bean ref="myBean" method="hello"/>
+            <log message="${body}" />
+            <bean ref="myBean" method="bye"/>
+            <log message="${body}" />
+        </route>
+
+    </camelContext>
+
+    <bean id="properties" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+                <value>file:conf/environment.properties</value>
+                <value>file:conf/credentials.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="myBean" class="ch.tranchida.ksb.MyBean">
+        <constructor-arg index="0">
+            <value>${hi}</value>
+        </constructor-arg>  
+        <constructor-arg index="1">
+            <value>${bye}</value>
+        </constructor-arg>
+    </bean>
+
+</beans>
