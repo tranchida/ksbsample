@@ -6,7 +6,16 @@
     ">
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
-    
+
+        <restConfiguration component="platform-http">
+        </restConfiguration>
+
+        <rest path="/say">
+            <get path="/hello">
+                <to uri="direct:hello"/>
+            </get>
+        </rest>
+
         <route id="sample">
             <from uri="timer:foo?period={{myPeriod}}"/>
             <log message="{{message}}" />
@@ -14,6 +23,13 @@
             <log message="${body}" />
             <bean ref="myBean" method="bye"/>
             <log message="${body}" />
+        </route>
+
+        <route>
+            <from uri="direct:hello"/>
+            <transform>
+                <constant>hello</constant>
+            </transform>
         </route>
 
     </camelContext>
