@@ -2,6 +2,7 @@ resources:
 - deployment.yaml
 - service.yaml
 - pvc.yaml
+- route.yaml
 
 commonAnnotations:
   creator: Giampaolo Tranchida
@@ -9,4 +10,5 @@ commonAnnotations:
 commonLabels:
   technologie: camel
 
-
+crds:
+  - crds/openshift-route.json

@@ -1,6 +1,5 @@
 resources:
 - ../base
-- ingress.yaml
 
 namePrefix: prod-
 
@@ -14,3 +13,4 @@ secretGenerator:
 - name: ksbsample-credentials
   files:
   - credentials.properties
+
