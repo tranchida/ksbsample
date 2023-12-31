@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * A simple unit test showing how to test the application {@link MyApplication}.
+ * A simple unit test showing how to test the application {@link Application}.
  */
 class MyApplicationTest extends CamelSpringTestSupport {
 

@@ -5,13 +5,12 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="ksbsample" xmlns="http://camel.apache.org/schema/spring">
 
-        <restConfiguration component="platform-http">
-        </restConfiguration>
+        <restConfiguration component="jetty" port="8080"/>
 
-        <rest path="/say">
-            <get path="/hello">
+        <rest path="/say" produces="application/json">
+            <get id="sayHello" path="/hello">
                 <to uri="direct:hello"/>
             </get>
         </rest>
@@ -25,10 +24,10 @@
             <log message="${body}" />
         </route>
 
-        <route>
+        <route id="hello">
             <from uri="direct:hello"/>
             <transform>
-                <constant>hello</constant>
+                <constant>{"message": "hello"}</constant>
             </transform>
         </route>
 
