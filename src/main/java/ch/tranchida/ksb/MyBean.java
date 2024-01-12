@@ -2,8 +2,8 @@ package ch.tranchida.ksb;
 
 public class MyBean {
 
-    private String hi;
-    private String bye;
+    private final String hi;
+    private final String bye;
 
     public MyBean(String hi, String bye) {
         this.hi = hi;

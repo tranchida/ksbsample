@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: ksbsample-service
 spec:
+  type: LoadBalancer
   selector:
     app: ksbsample
   ports:
