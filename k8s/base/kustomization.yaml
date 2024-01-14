@@ -7,8 +7,9 @@ resources:
 commonAnnotations:
   creator: Giampaolo Tranchida
 
-commonLabels:
-  technologie: camel
+labels:
+  - pairs:
+      technologie: camel-spring
 
 crds:
   - crds/openshift-route.json
