@@ -10,6 +10,7 @@ commonAnnotations:
 labels:
   - pairs:
       technologie: camel-spring
+    includeSelectors: true
 
 crds:
   - crds/openshift-route.json
