@@ -14,4 +14,10 @@ secretGenerator:
   files:
   - credentials.properties
 
-
+patches: 
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Service
+      name: ksbsample-service
+    path: service-patch.yaml

@@ -2,7 +2,6 @@ resources:
 - deployment.yaml
 - service.yaml
 - pvc.yaml
-- route.yaml
 
 commonAnnotations:
   creator: Giampaolo Tranchida
