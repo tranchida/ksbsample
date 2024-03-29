@@ -1,14 +1,12 @@
 package ch.tranchida.ksb;
 
+import lombok.Setter;
+
+@Setter
 public class MyBean {
 
-    private final String hi;
-    private final String bye;
-
-    public MyBean(String hi, String bye) {
-        this.hi = hi;
-        this.bye = bye;
-    }
+    private String hi;
+    private String bye;
 
     public String hello() {
         return hi + " how are you?";

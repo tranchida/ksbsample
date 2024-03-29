@@ -1,0 +1,34 @@
+<camel>
+
+    <bean name="myBean" type="ch.tranchida.ksb.MyBean">
+        <properties>
+            <property key="hi" value="Salut" />
+            <property key="bye" value="Aurevoir" />
+        </properties>
+    </bean>
+
+    <restConfiguration component="platform" />
+
+    <rest path="/say" produces="application/json">
+        <get id="sayHello" path="/hello">
+            <to uri="direct:hello" />
+        </get>
+    </rest>
+
+    <route id="sample">
+        <from uri="timer:foo?period=5000" />
+        <log message="test" />
+        <bean ref="myBean" method="hello" />
+        <log message="${body}" />
+        <bean ref="myBean" method="bye" />
+        <log message="${body}" />
+    </route>
+
+    <route id="hello">
+        <from uri="direct:hello" />
+        <transform>
+            <constant>{"message": "hello"}</constant>
+        </transform>
+    </route>
+
+</camel>
