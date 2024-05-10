@@ -25,9 +25,16 @@ spec:
         #  - "while true; do sleep 6000; done"
         env:
         - name: JAVA_TOOL_OPTIONS
-          value: "-Xms128m -Xmx128m"
+          value: "-Xms256m -Xmx256m"
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /q/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
         volumeMounts:
         - name: config-volume
           mountPath: /conf/environment.properties
@@ -39,11 +46,11 @@ spec:
           mountPath: /data
         resources:
           requests:
-            cpu: 400m
-            memory: 200Mi
+            cpu: "1"
+            memory: 400Mi
           limits:
-            cpu: 500m
-            memory: 200Mi
+            cpu: "1"
+            memory: 400Mi
       volumes:
       - name: config-volume
         configMap:
@@ -56,3 +63,4 @@ spec:
       - name: data-volume
         persistentVolumeClaim:
           claimName: ksbsample-pvc
+

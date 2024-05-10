@@ -1,0 +1,19 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ksbsample-ingress
+  labels:
+    name: ksbsample-ingress
+spec:
+  rules:
+  - host: ksbsample.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ksbsample-service
+            port: 
+              number: 8080
+              

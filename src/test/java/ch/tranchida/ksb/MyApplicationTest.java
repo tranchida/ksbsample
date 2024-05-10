@@ -2,30 +2,35 @@ package ch.tranchida.ksb;
 
 import java.util.concurrent.TimeUnit;
 
-import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
+import org.apache.camel.BeanInject;
+import org.apache.camel.Exchange;
+import org.apache.camel.FluentProducerTemplate;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.apache.camel.test.main.junit5.CamelMainTest;
+import org.apache.camel.test.main.junit5.CamelMainTestSupport;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * A simple unit test showing how to test the application {@link Application}.
  */
-class MyApplicationTest extends CamelSpringTestSupport {
+@CamelMainTest( mainClass = Application.class)
+class MyApplicationTest {
 
-    @Override
-    protected AbstractApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel.xml");
-    }
+    @BeanInject
+    FluentProducerTemplate fluentTemplate;
 
     @Test
-    void should_complete_the_auto_detected_route() {
-        NotifyBuilder notify = new NotifyBuilder(context)
-                .whenCompleted(1).whenBodiesDone("Goodbye World").create();
-        assertTrue(
-                notify.matches(20, TimeUnit.SECONDS), "1 message should be completed"
-        );
+    public void testSayHello() throws Exception {
+
+        Exchange result = fluentTemplate
+                .to("http://localhost:8080/say/hello")
+                .request(Exchange.class);
+
+        Assertions.assertNotNull(result.getMessage().getBody());
+        Assertions.assertEquals("{\"message\": \"hello\"}", result.getMessage().getBody(String.class));
     }
+
 }

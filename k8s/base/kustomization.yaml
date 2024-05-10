@@ -1,6 +1,7 @@
 resources:
 - deployment.yaml
 - service.yaml
+- ingress.yaml
 - pvc.yaml
 
 commonAnnotations:
@@ -10,6 +11,3 @@ labels:
   - pairs:
       technologie: camel-spring
     includeSelectors: true
-
-crds:
-  - crds/openshift-route.json

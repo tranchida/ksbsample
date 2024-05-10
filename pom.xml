@@ -15,7 +15,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <camel.version>4.4.1</camel.version>
+    <camel.version>4.5.0</camel.version>
   </properties>
 
   <dependencyManagement>
@@ -53,9 +53,18 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-platform-http-main</artifactId>
+      <artifactId>camel-http</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-platform-http</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-platform-http-jolokia</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-management</artifactId>
@@ -71,6 +80,13 @@
       <artifactId>camel-xml-io-dsl</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.googlecode.xmemcached</groupId>
+      <artifactId>xmemcached</artifactId>
+      <version>2.4.3</version>
+    </dependency>
+
+    
     <!-- where we need to pick which components we use (also core components) -->
 
     <dependency>
@@ -91,7 +107,7 @@
     <!-- testing -->
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-spring-junit5</artifactId>
+      <artifactId>camel-test-main-junit5</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -131,7 +147,7 @@
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.4.2</version>
         <configuration>
           <from>
             <image>
