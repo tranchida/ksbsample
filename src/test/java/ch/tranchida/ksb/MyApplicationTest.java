@@ -1,22 +1,16 @@
 package ch.tranchida.ksb;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.camel.BeanInject;
 import org.apache.camel.Exchange;
 import org.apache.camel.FluentProducerTemplate;
-import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.test.main.junit5.CamelMainTest;
-import org.apache.camel.test.main.junit5.CamelMainTestSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * A simple unit test showing how to test the application {@link Application}.
  */
-@CamelMainTest( mainClass = Application.class)
+@CamelMainTest(mainClass = Application.class)
 class MyApplicationTest {
 
     @BeanInject
