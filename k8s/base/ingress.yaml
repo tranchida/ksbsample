@@ -6,7 +6,7 @@ metadata:
     name: ksbsample-ingress
 spec:
   rules:
-  - host: ksbsample.example.com
+  - host: ksbsample.test
     http:
       paths:
       - pathType: Prefix
