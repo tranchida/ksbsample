@@ -27,11 +27,14 @@ spec:
         - name: JAVA_TOOL_OPTIONS
           value: "-Xms256m -Xmx256m"
         ports:
-        - containerPort: 8080
+        - name : http
+          containerPort: 8080
+        - name : management
+          containerPort: 8081
         livenessProbe:
           httpGet:
-            path: /q/health
-            port: 8080
+            path: /actuator/health
+            port: 8081
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
