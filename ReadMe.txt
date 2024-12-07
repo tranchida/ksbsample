@@ -1,26 +1,17 @@
-Camel Main
-==========
+install 
+ - minikube
+ - kubectl
+ - helm
 
-This example shows how to run Camel standalone via the built-in Main class.
+minikube start
+minikube addons enable ingress
 
-The example also demonstrates how you can configure the Camel application
-via Camel built-in dependency-injection that supports binding via the
-`@BindToRegistry`, `@BeanInject` and `@PropertyInject` annotations.
+add 
+    192.168.49.2    ksbsample.test 
+in /etc/hosts
 
-Also notice how you can configure Camel in the `application.properties` file.
+from helm/esbk run
+    helm install sample .
 
-=== How to build
-
-To build this project use
-
-    mvn install
-
-=== How to run
-
-You can run this example using
-
-    mvn camel:run
-
-=== More information
-
-You can find more information about Apache Camel at the website: http://camel.apache.org/
+test with
+    curl http://ksbsample.test/say/hello
