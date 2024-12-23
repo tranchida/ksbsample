@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ksbsample
+spec:
+  template:
+    spec:
+      containers:
+      - name: ksbsample
+        env:
+        - name: environment
+          value: dev

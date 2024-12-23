@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ksbsample
+  labels:
+    app: ksbsample
+    technology: springboot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ksbsample
+  template:
+    metadata:
+      labels:
+        app: ksbsample
+    spec:
+      containers:
+      - name: ksbsample
+        image: tranchida/ksbsample:1.0.0
+        imagePullPolicy: Always
+        env:
+        - name: environment
+          value: override
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+          requests:
+            memory: "256Mi"
+            cpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8081
+          initialDelaySeconds: 30
+        volumeMounts:
+        - name: ksbsample
+          mountPath: /data
+      volumes:
+      - name: ksbsample
+        persistentVolumeClaim:
+          claimName: ksbsample

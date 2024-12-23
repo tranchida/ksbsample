@@ -106,12 +106,6 @@
           <to>
             <image>tranchida/ksbsample:1.0.0</image>
           </to>
-          <container>
-            <ports>
-              <port>8080</port>
-            </ports>
-            <user>nobody</user>
-          </container>
         </configuration>
       </plugin>
 
