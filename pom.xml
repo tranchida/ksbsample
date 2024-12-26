@@ -5,6 +5,12 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+     <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>3.4.1</version>
+  </parent>
+
   <groupId>ch.tranchida.ksb</groupId>
   <artifactId>ksbsample</artifactId>
   <packaging>jar</packaging>
@@ -14,16 +20,6 @@
 
   <properties>
     <java.version>21</java.version>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-
-    <camel.version>4.8.1</camel.version>
-    <spring-boot.version>3.3.5</spring-boot.version>
   </properties>
 
   <dependencyManagement>
@@ -31,17 +27,17 @@
     <dependencies>
 
       <dependency>
-        <groupId>org.apache.camel.springboot</groupId>
-        <artifactId>camel-spring-boot-bom</artifactId>
-        <version>${camel.version}</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.4.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
 
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
+        <groupId>org.apache.camel.springboot</groupId>
+        <artifactId>camel-spring-boot-bom</artifactId>
+        <version>4.9.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -58,6 +54,27 @@
 
     <dependency>
       <groupId>org.apache.camel.springboot</groupId>
+      <artifactId>camel-management-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jolokia</groupId>
+      <artifactId>jolokia-support-spring</artifactId>
+      <version>2.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-spring-boot-xml-starter</artifactId>
     </dependency>
 
@@ -66,15 +83,11 @@
       <artifactId>camel-platform-http-starter</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-jolokia-starter</artifactId>
-    </dependency>
-
     <!-- testing -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -86,26 +99,33 @@
   </dependencies>
 
   <build>
-    <defaultGoal>install</defaultGoal>
-
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
-        <configuration>
-          <source>21</source>
-          <release>21</release>
-        </configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+      <plugin>
+        <groupId>org.graalvm.buildtools</groupId>
+        <artifactId>native-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
-        <version>3.4.2</version>
+        <version>3.4.4</version>
         <configuration>
+          <from>
+            <image>eclipse-temurin:21-jre-alpine@sha256:2a0bbb1db6d8db42c66ed00c43d954cf458066cc37be12b55144781da7864fdf</image>
+          </from>
           <to>
             <image>tranchida/ksbsample:1.0.0</image>
           </to>
+          <container>
+            <format>OCI</format>
+            <ports>
+              <port>8080</port>
+              <port>8081</port>
+            </ports>
+          </container>
         </configuration>
       </plugin>
 

@@ -19,7 +19,18 @@ spec:
       - name: ksbsample
         image: tranchida/ksbsample:1.0.0
         imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1001
+          capabilities:
+            drop:
+            - ALL
         env:
+        - name: TZ
+          value: Europe/Zurich
         - name: environment
           value: override
         ports:
@@ -40,7 +51,11 @@ spec:
         volumeMounts:
         - name: ksbsample
           mountPath: /data
+        - name: tmp
+          mountPath: /tmp
       volumes:
       - name: ksbsample
         persistentVolumeClaim:
           claimName: ksbsample
+      - name: tmp
+        emptyDir: {}
