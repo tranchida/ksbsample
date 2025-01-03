@@ -83,6 +83,11 @@
       <artifactId>camel-platform-http-starter</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+
     <!-- testing -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -117,7 +122,7 @@
             <image>eclipse-temurin:21-jre-alpine@sha256:2a0bbb1db6d8db42c66ed00c43d954cf458066cc37be12b55144781da7864fdf</image>
           </from>
           <to>
-            <image>tranchida/ksbsample:1.0.0</image>
+            <image>tranchida/ksbsample:2.0.0</image>
           </to>
           <container>
             <format>OCI</format>

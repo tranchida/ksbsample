@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
       - name: ksbsample
-        imagePullPolicy: IfNotPresent
         env:
         - name: environment
           value: prod
