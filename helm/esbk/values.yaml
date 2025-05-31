@@ -41,13 +41,15 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1001
+  capabilities:
+    drop:
+      - ALL
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
@@ -89,12 +91,12 @@ resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
-    path: /actuator/health
+    path: /actuator/health/liveness
     port: monitoring
   initialDelaySeconds: 30
 readinessProbe:
   httpGet:
-    path: /actuator/health
+    path: /actuator/health/readiness
     port: monitoring
   initialDelaySeconds: 30
 
