@@ -3,8 +3,7 @@ kind: Service
 metadata:
   name: ksbsample
 spec:
-  type: LoadBalancer
-  allocateLoadBalancerNodePorts: false
+  type: ClusterIP
   selector:
     app: ksbsample
   ports:

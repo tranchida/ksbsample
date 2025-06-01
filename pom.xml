@@ -122,7 +122,7 @@
             <image>eclipse-temurin:21-jre-alpine@sha256:2a0bbb1db6d8db42c66ed00c43d954cf458066cc37be12b55144781da7864fdf</image>
           </from>
           <to>
-            <image>tranchida/ksbsample:2.0.0</image>
+            <image>tranchida/ksbsample:2.0.1</image>
           </to>
           <container>
             <format>OCI</format>
@@ -130,6 +130,7 @@
               <port>8080</port>
               <port>8081</port>
             </ports>
+            <user>nobody:nogroup</user>
           </container>
         </configuration>
         <executions>

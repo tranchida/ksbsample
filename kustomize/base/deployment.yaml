@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: ksbsample
-        image: tranchida/ksbsample:2.0.0
-        imagePullPolicy: Always
+        image: tranchida/ksbsample:2.0.1
+        imagePullPolicy: IfNotPresent
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           runAsNonRoot: true
-          runAsUser: 1000
-          runAsGroup: 1001
+          runAsUser: 65534
+          runAsGroup: 65533
           capabilities:
             drop:
             - ALL
